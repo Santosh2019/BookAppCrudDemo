@@ -1,4 +1,4 @@
-package com.bookapp.Test;
+package com.bookapp;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -7,6 +7,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class BookAppCrudDemoApplication {
 
 	public static void main(String[] args) {
+		
 		SpringApplication.run(BookAppCrudDemoApplication.class, args);
 
 	}
