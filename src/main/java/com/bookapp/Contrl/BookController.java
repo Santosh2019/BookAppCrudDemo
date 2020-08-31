@@ -1,7 +1,10 @@
 package com.bookapp.Contrl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -17,11 +20,25 @@ public class BookController {
 	@Autowired
 	BookServiceImplementation serviceImplementaion;
 
+	@GetMapping("/allList")
+	public List<Book> getAllBook_list(Book name) {
+
+		return serviceImplementaion.getAllBooks(name);
+
+	}
+
+	@GetMapping("/getSingleBook/{bookPrice}")
+	public Book getSingleBook_list(@PathVariable("bookPrice") int bookPrice) {
+
+		return serviceImplementaion.getBook(bookPrice);
+
+	}
+
 	@PostMapping("/create")
 	public void addBook(@RequestBody Book bookName) {
-		
+
 		System.out.println("\t Record Added Successfully");
-	
+
 		serviceImplementaion.add(bookName);
 	}
 
@@ -34,7 +51,7 @@ public class BookController {
 
 	@DeleteMapping("/delete/{bookPrice}")
 	public void deleteBook(@PathVariable("bookPrice") int bookPrice) {
-		
+
 		System.out.println("\t Record Deleted Successfully");
 		serviceImplementaion.delete(bookPrice);
 
