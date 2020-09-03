@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.bookapp.SrvcImpl.BookServiceImplementation;
 import com.bookapp.bean.Book;
+import com.example.exceptionHandler.BookNotFoundException;
 
 @RestController
 public class BookController {
@@ -28,32 +29,41 @@ public class BookController {
 	}
 
 	@GetMapping("/getSingleBook/{bookPrice}")
-	public Book getSingleBook_list(@PathVariable("bookPrice") int bookPrice) {
+	public Book getSingleBook_list(@PathVariable("bookPrice") int bookPrice) throws BookNotFoundException {
 
-		return serviceImplementaion.getBook(bookPrice);
+		Book bookObj = serviceImplementaion.getBook(bookPrice);
+
+		return bookObj;
 
 	}
 
 	@PostMapping("/create")
-	public void addBook(@RequestBody Book bookName) {
+	public String addBook(@RequestBody Book bookName) {
 
 		System.out.println("\t Record Added Successfully");
 
 		serviceImplementaion.add(bookName);
+
+		return "Record Added Successfully";
+
 	}
 
 	@PutMapping("/update/{bookPrice}")
-	public void updateBook(@PathVariable("bookPrice") int bookPrice, @RequestBody Book bookName) {
+	public String updateBook(@PathVariable("bookPrice") int bookPrice, @RequestBody Book bookName) {
 
 		System.out.println(" \t Record Updated Successfully");
 		serviceImplementaion.update(bookName);
+
+		return "Record Updated Successfully";
 	}
 
 	@DeleteMapping("/delete/{bookPrice}")
-	public void deleteBook(@PathVariable("bookPrice") int bookPrice) {
+	public String deleteBook(@PathVariable("bookPrice") int bookPrice) {
 
 		System.out.println("\t Record Deleted Successfully");
 		serviceImplementaion.delete(bookPrice);
+
+		return "Record Deleted Successfully";
 
 	}
 

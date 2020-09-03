@@ -32,25 +32,23 @@ public class BookServiceImplementation implements BookAppService {
 	@Override
 	public void delete(int bookPrice) {
 		// TODO Auto-generated method stub
-		
+
 		bookRepository.deleteById(bookPrice);
 	}
 
 	@Override
 	public List<Book> getAllBooks(Book name) {
 		// TODO Auto-generated method stub
-		List<Book>list=bookRepository.findAll();
-		
+		List<Book> list = bookRepository.findAll();
+
 		return list;
 	}
 
 	@Override
 	public Book getBook(int bookPrice) {
 		// TODO Auto-generated method stub
-		Optional<Book>getOnebook=bookRepository.findById(bookPrice);
+		Optional<Book> getOnebook = bookRepository.findById(bookPrice);
 		return getOnebook.get();
 	}
-
-
 
 }
