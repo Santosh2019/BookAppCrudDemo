@@ -29,18 +29,18 @@ public class BookController {
 	}
 
 	@GetMapping("/getSingleBook/{bookPrice}")
-	public Book getSingleBook_list(@PathVariable("bookPrice") int bookPrice) throws BookNotFoundException {
-
+	public Book getSingleBook_list(@PathVariable("bookPrice") int bookPrice){	
+		
+		if(true) throw new BookNotFoundException("Book Id Not found");
+		
+		@SuppressWarnings("unused")
 		Book bookObj = serviceImplementaion.getBook(bookPrice);
-
 		return bookObj;
 
 	}
 
 	@PostMapping("/create")
 	public String addBook(@RequestBody Book bookName) {
-
-		System.out.println("\t Record Added Successfully");
 
 		serviceImplementaion.add(bookName);
 
@@ -51,7 +51,8 @@ public class BookController {
 	@PutMapping("/update/{bookPrice}")
 	public String updateBook(@PathVariable("bookPrice") int bookPrice, @RequestBody Book bookName) {
 
-		System.out.println(" \t Record Updated Successfully");
+
+		
 		serviceImplementaion.update(bookName);
 
 		return "Record Updated Successfully";
@@ -60,7 +61,6 @@ public class BookController {
 	@DeleteMapping("/delete/{bookPrice}")
 	public String deleteBook(@PathVariable("bookPrice") int bookPrice) {
 
-		System.out.println("\t Record Deleted Successfully");
 		serviceImplementaion.delete(bookPrice);
 
 		return "Record Deleted Successfully";
